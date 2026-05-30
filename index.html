@@ -392,7 +392,7 @@
         @media (max-width: 800px) {
             .modal-content {
                 width: 96%;
-                padding: 1.2rem;
+                padding: 0.3rem 1.2rem;
             }
             .gallery-item {
                 width: 250px;
@@ -581,7 +581,7 @@
         function updateScales() {
             const containerRect = galleryContainer.getBoundingClientRect();
             const centerX = containerRect.left + containerRect.width / 2;
-            let maxScale = 1.16;
+            let maxScale = 1.0;
             let minScale = 0.86;
 
             items.forEach(item => {
