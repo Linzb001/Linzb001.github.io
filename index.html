@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>科技作品集 | 黑色系 · 现代简约</title>
+    <title>AI作品展示 | 黑色系 · 现代简约</title>
     <!-- 使用简洁的现代字体 Inter 和 Space Grotesk 增强科技感 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 (免费图标库，增强视觉元素) -->
@@ -154,8 +154,7 @@
             transform: scale(1.02);
         }
 
-        /* 为每张卡片设定独特的科技风格图像 (源自于抽象科技图片/也可用真实作品图 使用unsplash高清占位与抽象渐变组合) */
-        /* 使用高质量科技主题图像占位，显得专业现代 */
+        /* 为每张卡片设定独特的科技风格图像 (保留原图占位，用户可自行替换) */
         .img-1 {
             background-image: linear-gradient(135deg, #0f2027, #203a43, #2c5364), url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=600&auto=format'); 
             background-blend-mode: overlay;
@@ -316,34 +315,32 @@
     <!-- 头部简介区域 -->
     <div class="hero">
         <div class="badge">
-            <i class="fas fa-microchip" style="margin-right: 6px;"></i> PORTFOLIO 2026
+            <i class="fas fa-microchip" style="margin-right: 6px;"></i> Linzb 2026
         </div>
-        <h1>林一·科技作品集</h1>
+        <h1>AI作品展示</h1>
         <div class="subhead">
-            创造未来感数字体验 · AI 前沿 & 沉浸式交互
+            AI创作咸鱼设计师
         </div>
-        <div style="margin-top: 1.2rem; font-size: 0.9rem; color: #7ea1c4;">
-            <i class="fas fa-cursor"></i> 精选项目 | 现代简约 | 黑色科技
-        </div>
+        <!-- 以下行已被删除：精选项目 | 现代简约 | 黑色科技 -->
     </div>
 
     <!-- 项目卡片网格：三个项目，符合现代风格与科技感 -->
     <div class="projects-grid">
-        <!-- 卡片 1：智慧城市交互系统 -->
+        <!-- 卡片 1：电商模特换装 -->
         <div class="project-card">
             <div class="card-image img-1"></div>
             <div class="card-content">
                 <div class="project-title">
-                    智慧城市交互系统 <span>AI+IoT</span>
+                    电商模特换装 <span>AI虚拟试穿</span>
                 </div>
                 <div class="project-description">
-                    为未来城市打造实时数据可视化平台，集成环境监测、交通流量预测和智能决策引擎。通过动态3D地图与AR指挥中心大幅提升管理效率。
+                    基于扩散模型与人物分割技术，实现电商服装的智能虚拟试穿。用户上传真人照片即可一键替换服装款式，支持多角度展示，大幅提升转化率与购物体验。
                 </div>
                 <div class="tech-stack">
-                    <span class="tech-tag">React Three Fiber</span>
-                    <span class="tech-tag">Python/FastAPI</span>
-                    <span class="tech-tag">WebSocket</span>
-                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">Stable Diffusion</span>
+                    <span class="tech-tag">SAM分割</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Flask</span>
                 </div>
                 <a href="#" class="project-link" aria-label="查看案例研究">
                     案例研究 <i class="fas fa-arrow-right"></i>
@@ -351,43 +348,43 @@
             </div>
         </div>
 
-        <!-- 卡片 2：神经风格迁移引擎 (AI创意平台) -->
+        <!-- 卡片 2：电商详情页主图设计 -->
         <div class="project-card">
             <div class="card-image img-2"></div>
             <div class="card-content">
                 <div class="project-title">
-                    NeuralFlow 创意工坊 <span>生成式AI</span>
+                    电商详情页主图设计 <span>AI视觉营销</span>
                 </div>
                 <div class="project-description">
-                    基于扩散模型的实时风格迁移工具，支持图片/视频流风格转换。为设计师提供无限灵感，日均生成超过5000+高质量数字艺术作品。
+                    利用AI生成高质感电商主图，自动匹配品牌风格与促销文案。从商品抠图到背景合成，一键批量生成多版本详情页素材，助力店铺点击率提升40%以上。
                 </div>
                 <div class="tech-stack">
-                    <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">Stable Diffusion</span>
-                    <span class="tech-tag">Next.js</span>
-                    <span class="tech-tag">WebGPU</span>
+                    <span class="tech-tag">Photoshop</span>
+                    <span class="tech-tag">ComfyUI</span>
+                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">HTML/CSS</span>
                 </div>
                 <a href="#" class="project-link" aria-label="查看演示">
-                    演示 / 文档 <i class="fas fa-arrow-right"></i>
+                    演示/文档 <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
 
-        <!-- 卡片 3：沉浸式数据叙事仪表盘 -->
+        <!-- 卡片 3：壁纸海报设计 -->
         <div class="project-card">
             <div class="card-image img-3"></div>
             <div class="card-content">
                 <div class="project-title">
-                    CosmoScope 观测站 <span>数据叙事</span>
+                    壁纸海报设计 <span>AIGC艺术</span>
                 </div>
                 <div class="project-description">
-                    沉浸式天文数据叙事平台，将太空望远镜公开数据转化为动态可视化叙事故事。支持VR模式与多维数据交互，曾用于国际天文学科普展。
+                    运用Midjourney与Stable Diffusion创作4K超清壁纸及商业海报，涵盖科幻、国潮、极简等多种风格。提供定制化设计服务，已授权多家数字艺术平台。
                 </div>
                 <div class="tech-stack">
-                    <span class="tech-tag">Three.js</span>
-                    <span class="tech-tag">Vue 3</span>
-                    <span class="tech-tag">Django</span>
-                    <span class="tech-tag">WebXR</span>
+                    <span class="tech-tag">Midjourney</span>
+                    <span class="tech-tag">Photoshop</span>
+                    <span class="tech-tag">排版设计</span>
+                    <span class="tech-tag">色彩管理</span>
                 </div>
                 <a href="#" class="project-link" aria-label="探索项目">
                     探索项目 <i class="fas fa-arrow-right"></i>
@@ -408,7 +405,7 @@
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
         <div style="font-size: 0.7rem; margin-top: 1.2rem; color: #3c4b5e;">
-            © 2026 林一 · 作品集 | 黑色科技极简主义
+            © 2026 AI作品展示 · 黑色科技极简主义
         </div>
     </div>
 </div>
