@@ -577,8 +577,8 @@
         function updateScales() {
             const containerRect = galleryContainer.getBoundingClientRect();
             const centerX = containerRect.left + containerRect.width / 2;
-            let maxScale = 1.05;
-            let minScale = 0.66;
+            let maxScale = 0.66;
+            let minScale = 0.40;
 
             items.forEach(item => {
                 const itemRect = item.getBoundingClientRect();
