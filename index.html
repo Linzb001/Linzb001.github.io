@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* 静态网格背景（不移动，仅视觉层次） */
+        /* 静态背景 */
         .grid-bg {
             position: fixed;
             top: 0;
@@ -38,7 +38,6 @@
             opacity: 0.2;
         }
 
-        /* 静态微光晕（无动画） */
         .static-glow {
             position: fixed;
             top: -20%;
@@ -241,7 +240,7 @@
             transform: translateY(-3px);
         }
 
-        /* 模态框样式 - 横向滚动图片集 */
+        /* 模态框样式 */
         .modal {
             display: none;
             position: fixed;
@@ -249,8 +248,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -263,12 +262,12 @@
             opacity: 1;
         }
         .modal-content {
-            background: rgba(8, 12, 20, 0.95);
-            border-radius: 32px;
-            max-width: 1200px;
-            width: 90%;
-            max-height: 85vh;
-            border: 1px solid rgba(0, 255, 170, 0.4);
+            background: rgba(8, 12, 20, 0.96);
+            border-radius: 40px;
+            max-width: 1400px;
+            width: 95%;
+            max-height: 90vh;
+            border: 1px solid rgba(0, 255, 170, 0.5);
             padding: 1.8rem;
             position: relative;
             box-shadow: 0 30px 50px rgba(0,0,0,0.8);
@@ -292,30 +291,35 @@
             transform: scale(1.1);
         }
         .modal h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 0.25rem;
             color: #eef5ff;
             padding-right: 2rem;
         }
         .modal-sub {
             color: #8affcf;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             border-left: 3px solid #2cffa6;
             padding-left: 1rem;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
-        /* 横向滚动画廊 */
+        /* 横向画廊 - 聚焦中间放大，完美适配竖版9:16/9:20 */
         .gallery-scroll {
             overflow-x: auto;
-            overflow-y: hidden;
+            overflow-y: visible;
             white-space: nowrap;
-            padding-bottom: 1rem;
+            padding: 1rem 0 2rem 0;
             scrollbar-width: thin;
             scrollbar-color: #2cffa6 #1a1f2e;
-            flex: 1;
+            cursor: grab;
+            user-select: none;
+            scroll-behavior: smooth;
+        }
+        .gallery-scroll:active {
+            cursor: grabbing;
         }
         .gallery-scroll::-webkit-scrollbar {
-            height: 6px;
+            height: 8px;
         }
         .gallery-scroll::-webkit-scrollbar-track {
             background: #1a1f2e;
@@ -327,48 +331,72 @@
         }
         .gallery-track {
             display: inline-flex;
-            gap: 1.2rem;
-            padding: 0.5rem 0.2rem;
+            align-items: center;
+            gap: 2rem;
+            padding: 0.5rem 6rem;
         }
         .gallery-item {
-            display: inline-block;
-            width: auto;
-            max-width: 320px;
+            display: inline-flex;
+            flex-direction: column;
+            width: 380px;
             background: #0e121c;
-            border-radius: 20px;
+            border-radius: 28px;
             overflow: hidden;
-            border: 1px solid rgba(0, 255, 170, 0.2);
-            transition: 0.2s;
-            cursor: pointer;
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+            transform-origin: center center;
+            will-change: transform;
             vertical-align: top;
             white-space: normal;
+            cursor: pointer;
         }
         .gallery-item:hover {
-            border-color: #2cffa6;
-            transform: translateY(-4px);
+            border-color: #4effbc;
         }
         .gallery-item img {
             width: 100%;
             height: auto;
-            max-height: 480px;
-            object-fit: contain;
+            min-height: 400px;
+            max-height: 680px;
+            object-fit: cover;
             background: #070b10;
             display: block;
+            pointer-events: none;
         }
         .gallery-caption {
-            padding: 0.6rem;
+            padding: 0.8rem;
             text-align: center;
-            font-size: 0.75rem;
-            color: #aab8d4;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            color: #ccddf8;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-weight: 500;
         }
-        /* 针对竖版图片，让图片区域更高 */
-        @media (min-width: 768px) {
+        /* 响应式调整 - 竖版友好 */
+        @media (max-width: 1200px) {
             .gallery-item {
-                max-width: 360px;
+                width: 320px;
             }
             .gallery-item img {
-                max-height: 540px;
+                max-height: 560px;
+                min-height: 340px;
+            }
+            .gallery-track {
+                gap: 1.5rem;
+                padding: 0.5rem 4rem;
+            }
+        }
+        @media (max-width: 800px) {
+            .gallery-item {
+                width: 260px;
+            }
+            .gallery-item img {
+                max-height: 460px;
+                min-height: 280px;
+            }
+            .gallery-track {
+                gap: 1rem;
+                padding: 0.5rem 2rem;
             }
         }
         @media (max-width: 700px) {
@@ -377,12 +405,13 @@
             }
             h1 { font-size: 2.5rem; }
             .projects-grid { gap: 1.5rem; }
-            .modal-content { padding: 1.2rem; width: 95%; }
+            .modal-content { padding: 1rem; width: 98%; }
             .gallery-item {
-                max-width: 240px;
+                width: 220px;
             }
             .gallery-item img {
-                max-height: 360px;
+                max-height: 400px;
+                min-height: 240px;
             }
         }
         ::-webkit-scrollbar { width: 6px; }
@@ -405,7 +434,6 @@
     </div>
 
     <div class="projects-grid">
-        <!-- 卡片 1 -->
         <div class="project-card" data-modal="modal1">
             <div class="card-image img-1"></div>
             <div class="card-content">
@@ -420,8 +448,6 @@
                 <div class="card-hint"><i class="fas fa-mouse-pointer"></i> 点击查看作品集</div>
             </div>
         </div>
-
-        <!-- 卡片 2 -->
         <div class="project-card" data-modal="modal2">
             <div class="card-image img-2"></div>
             <div class="card-content">
@@ -436,8 +462,6 @@
                 <div class="card-hint"><i class="fas fa-mouse-pointer"></i> 点击查看作品集</div>
             </div>
         </div>
-
-        <!-- 卡片 3 -->
         <div class="project-card" data-modal="modal3">
             <div class="card-image img-3"></div>
             <div class="card-content">
@@ -470,102 +494,164 @@
     </div>
 </div>
 
-<!-- 模态框 1 横向画廊 -->
+<!-- 模态框 1 电商模特换装 -->
 <div id="modal1" class="modal">
     <div class="modal-content">
         <button class="close-modal">&times;</button>
         <h2>电商模特换装 · 作品案例</h2>
-        <div class="modal-sub">← 左右滑动查看更多 → &nbsp; 点击图片可放大</div>
-        <div class="gallery-scroll">
+        <div class="modal-sub">← 横向滑动浏览 → &nbsp; 中间的图片自动放大 &nbsp; | &nbsp; 点击图片查看原图</div>
+        <div class="gallery-scroll" id="gallery1">
             <div class="gallery-track">
-                <div class="gallery-item"><img src="https://picsum.photos/id/20/500/700" alt="作品1"><div class="gallery-caption">虚拟试穿-01</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/26/500/750" alt="作品2"><div class="gallery-caption">虚拟试穿-02</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/28/500/700" alt="作品3"><div class="gallery-caption">虚拟试穿-03</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/30/500/800" alt="作品4"><div class="gallery-caption">虚拟试穿-04</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/32/500/700" alt="作品5"><div class="gallery-caption">虚拟试穿-05</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/36/500/750" alt="作品6"><div class="gallery-caption">虚拟试穿-06</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/20/800/1600" alt="作品1"><div class="gallery-caption">虚拟试穿 · 都市通勤风</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/26/800/1800" alt="作品2"><div class="gallery-caption">虚拟试穿 · 晚宴礼裙</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/28/800/1700" alt="作品3"><div class="gallery-caption">虚拟试穿 · 运动休闲</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/30/800/1600" alt="作品4"><div class="gallery-caption">虚拟试穿 · 职场西装</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/32/800/1760" alt="作品5"><div class="gallery-caption">虚拟试穿 · 度假连衣裙</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/36/800/1640" alt="作品6"><div class="gallery-caption">虚拟试穿 · 机能风外套</div></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 模态框 2 -->
+<!-- 模态框 2 电商主图设计 -->
 <div id="modal2" class="modal">
     <div class="modal-content">
         <button class="close-modal">&times;</button>
         <h2>电商详情页主图设计 · 作品案例</h2>
-        <div class="modal-sub">← 左右滑动查看更多 → &nbsp; 点击图片可放大</div>
-        <div class="gallery-scroll">
+        <div class="modal-sub">← 横向滑动浏览 → &nbsp; 中间的图片自动放大 &nbsp; | &nbsp; 点击图片查看原图</div>
+        <div class="gallery-scroll" id="gallery2">
             <div class="gallery-track">
-                <div class="gallery-item"><img src="https://picsum.photos/id/13/500/700" alt="主图1"><div class="gallery-caption">AI生成主图-01</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/22/500/750" alt="主图2"><div class="gallery-caption">AI生成主图-02</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/42/500/700" alt="主图3"><div class="gallery-caption">AI生成主图-03</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/47/500/800" alt="主图4"><div class="gallery-caption">AI生成主图-04</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/59/500/700" alt="主图5"><div class="gallery-caption">AI生成主图-05</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/13/800/1600" alt="主图1"><div class="gallery-caption">3C数码 · 科技感主图</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/22/800/1800" alt="主图2"><div class="gallery-caption">美妆护肤 · 质感精修</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/42/800/1700" alt="主图3"><div class="gallery-caption">家居生活 · 场景融合</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/47/800/1600" alt="主图4"><div class="gallery-caption">服饰箱包 · 白底精修</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/59/800/1760" alt="主图5"><div class="gallery-caption">食品饮料 · 诱人视觉</div></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- 模态框 3 -->
+<!-- 模态框 3 壁纸海报设计 -->
 <div id="modal3" class="modal">
     <div class="modal-content">
         <button class="close-modal">&times;</button>
         <h2>壁纸海报设计 · 作品案例</h2>
-        <div class="modal-sub">← 左右滑动查看更多 → &nbsp; 点击图片可放大</div>
-        <div class="gallery-scroll">
+        <div class="modal-sub">← 横向滑动浏览 → &nbsp; 中间的图片自动放大 &nbsp; | &nbsp; 点击图片查看原图</div>
+        <div class="gallery-scroll" id="gallery3">
             <div class="gallery-track">
-                <div class="gallery-item"><img src="https://picsum.photos/id/104/500/700" alt="壁纸1"><div class="gallery-caption">科幻壁纸-01</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/106/500/750" alt="壁纸2"><div class="gallery-caption">国潮海报-02</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/109/500/700" alt="壁纸3"><div class="gallery-caption">极简风-03</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/116/500/800" alt="壁纸4"><div class="gallery-caption">4K抽象-04</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/119/500/700" alt="壁纸5"><div class="gallery-caption">赛博朋克-05</div></div>
-                <div class="gallery-item"><img src="https://picsum.photos/id/127/500/750" alt="壁纸6"><div class="gallery-caption">自然艺术-06</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/104/800/1800" alt="壁纸1"><div class="gallery-caption">科幻未来 · 4K壁纸</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/106/800/1700" alt="壁纸2"><div class="gallery-caption">国潮插画 · 海报设计</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/109/800/1600" alt="壁纸3"><div class="gallery-caption">极简抽象 · 艺术海报</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/116/800/1760" alt="壁纸4"><div class="gallery-caption">赛博朋克 · 手机壁纸</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/119/800/1640" alt="壁纸5"><div class="gallery-caption">自然风光 · 宽幅海报</div></div>
+                <div class="gallery-item"><img src="https://picsum.photos/id/127/800/1800" alt="壁纸6"><div class="gallery-caption">梦幻银河 · 4K壁纸</div></div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // 卡片点击打开模态框
+    // 横向滚动时，中间卡片放大的核心逻辑
+    function initZoomOnScroll(galleryContainer) {
+        const track = galleryContainer.querySelector('.gallery-track');
+        if (!track) return;
+        const items = Array.from(track.querySelectorAll('.gallery-item'));
+        if (items.length === 0) return;
+
+        items.forEach(item => {
+            item.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1), border-color 0.2s';
+        });
+
+        function updateScales() {
+            const containerRect = galleryContainer.getBoundingClientRect();
+            const centerX = containerRect.left + containerRect.width / 2;
+            let maxScale = 1.32;
+            let minScale = 0.85;
+
+            items.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                const itemCenter = itemRect.left + itemRect.width / 2;
+                let distance = Math.abs(centerX - itemCenter);
+                let maxDistance = containerRect.width / 2;
+                let scale = maxScale - (distance / maxDistance) * (maxScale - minScale);
+                scale = Math.min(maxScale, Math.max(minScale, scale));
+                item.style.transform = `scale(${scale})`;
+                item.style.zIndex = scale > 1.1 ? 5 : 1;
+            });
+        }
+
+        let ticking = false;
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateScales();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        galleryContainer.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
+        updateScales();
+
+        return () => {
+            galleryContainer.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
+        };
+    }
+
+    const modalListeners = new Map();
+
     const cards = document.querySelectorAll('.project-card');
     const modals = document.querySelectorAll('.modal');
     const closeBtns = document.querySelectorAll('.close-modal');
 
+    function openModal(modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        const gallery = modal.querySelector('.gallery-scroll');
+        if (gallery && !modalListeners.has(modal.id)) {
+            setTimeout(() => {
+                const cleanup = initZoomOnScroll(gallery);
+                modalListeners.set(modal.id, cleanup);
+            }, 60);
+        }
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (modalListeners.has(modal.id)) {
+            const cleanup = modalListeners.get(modal.id);
+            if (cleanup) cleanup();
+            modalListeners.delete(modal.id);
+        }
+    }
+
     cards.forEach(card => {
         card.addEventListener('click', (e) => {
-            if(e.target.closest('.project-link')) return;
+            if (e.target.closest('.project-link')) return;
             const modalId = card.getAttribute('data-modal');
             const modal = document.getElementById(modalId);
-            if(modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+            if (modal) openModal(modal);
         });
     });
 
-    // 关闭按钮
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
+            closeModal(modal);
         });
     });
 
-    // 点击背景关闭
     modals.forEach(modal => {
         modal.addEventListener('click', (e) => {
-            if(e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            if (e.target === modal) closeModal(modal);
         });
     });
 
-    // 图片点击放大（新窗口打开）
-    const galleryImgs = document.querySelectorAll('.gallery-item img');
-    galleryImgs.forEach(img => {
+    document.querySelectorAll('.gallery-item img').forEach(img => {
         img.addEventListener('click', (e) => {
             e.stopPropagation();
             window.open(img.src, '_blank');
