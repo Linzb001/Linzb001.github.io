@@ -390,9 +390,11 @@
             }
         }
         @media (max-width: 800px) {
-            .nav-btn {
-                display: none;
-            }
+           .nav-btn {
+        display: none !important;   /* 加 !important 确保强制隐藏 */
+    }
+    /* 其他手机端样式... */
+}
             .modal-content {
                 width: 98%;
                 padding: 0.5rem 0.8rem;
